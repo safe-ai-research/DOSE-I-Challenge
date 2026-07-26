@@ -6,9 +6,7 @@
         content="Forecasting Responsiveness Under Propofol">
   <meta name="keywords" content="DOSE-I, EEG, procedural sedation, propofol, biosignals, sedation depth, state of consciousness">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Towards Predicting Sedation Depth in Endoscopy with Large Clinically Annotated EEG Data of
-Continuous Propofol Sedation
-</title>
+  <title>Forecasting Responsiveness Under Propofol</title>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
         rel="stylesheet">
@@ -191,30 +189,15 @@ Continuous Propofol Sedation
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Key Findings</h2>
+        <h2 class="title is-3">Call for Participation</h2>
 
         <div class="content has-text-justified">
           <p>
-            Our preliminary study demonstrates the potential of clinically annotated EEG datasets and established machine learning methods to support future AI-based monitoring of sedation during endoscopy.
-            Key findings of this work are:
-            <ol>
-              <li>
-              The best overall performance was achieved by a random forest, with a mean accuracy of
-              <strong>74.1%</strong> and an <strong>F1 score of 76.4%</strong>, outperforming both a
-              decision tree and a neural network.
-              </li>
-              <li>
-              The random forest also showed more consistent performance across validation folds,
-              with lower variability than the neural network while maintaining higher scores
-              across all evaluated metrics.
-              </li>
-              <li>
-              Combining engineered EEG features with additional
-              clinical information can support prediction of a patient's upcoming state of
-              consciousness.
-              </li>
-            </ol>
+            We invite teams from signal processing, machine learning, clinical monitoring, anesthesia, neuroscience, and consciousness research. 
+            The challenge asks participants to forecast a clinically observed response to propofol from information available at
+            the time of administration. Training data will be public. Final evaluation will use an independent and unreleased clinical cohort.
           </p>
+          <!--
           <figure style="margin-top: 2rem; text-align: center;">
             <img src="static/images/10CV_Boxplots.png"
                  alt="10-fold cross-validation boxplots"
@@ -223,6 +206,7 @@ Continuous Propofol Sedation
               10-fold cross-validation results comparing classifier performance.
             </figcaption>
           </figure>
+          -->
         </div>
       </div>
     </div>
@@ -233,40 +217,23 @@ Continuous Propofol Sedation
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Related Work</h2>
-
+        <h2 class="title is-3">Main Task</h2>
           <div class="notification is-light">
-        <ul style="list-style: disc outside; padding-left: 1.5rem;">
-        <li>
-          Our <em>United European Gastroenterology Journal</em> artcle
-            <a href="https://onlinelibrary.wiley.com/doi/10.1177/2050640620959153" target="_blank" rel="noopener">
-              Capability of Processed EEG Parameters to Monitor Conscious Sedation in Endoscopy Is Similar to General Anaesthesia
-            </a> (2021)
-            demonstrates that processed EEG parameters can reliably monitor conscious sedation during endoscopic procedures with performance comparable to monitoring during general anaesthesia.
-        </li>
-        <li>
-          Our <em>Der Gastroenterologe</em> article
-            <a href="https://link.springer.com/article/10.1007/s11377-020-00494-z" target="_blank" rel="noopener">
-              Monitoring of Conscious Sedation in Endoscopy with Artificial Intelligence
-          </a> (2021)
-          presents artificial intelligence approaches for EEG-based sedation monitoring, highlighting the potential of machine learning for objective assessment during endoscopy.
-        </li>
-        <li>
-          Our <em>Wiener klinisches Magazin</em> review
-            <a href="https://link.springer.com/article/10.1007/s00740-021-00424-x" target="_blank" rel="noopener">
-              Monitoring of Conscious Sedation in Endoscopy with Artificial Intelligence
-          </a> (2021)
-          argues that while current EEG-based sedation monitors are inadequate for endoscopic procedures, artificial intelligence—particularly neural network analysis of EEG and other biosignals—offers a promising path toward objective, real-time monitoring of sedation depth and improved patient safety during endoscopy.
-        </li>
-        <li>
-          Anne Klimpel's bachelor thesis
-             <a href="https://websrv.physik.uni-halle.de/Fachgruppen/kantel/Bachelorarbeit_Klimpel.pdf" target="_blank" rel="noopener">
-                EEG Parameters for Detecting Sedation Depth</a> (2020)
-             investigates EEG-derived parameters for estimating the depth of sedation and their suitability for clinical monitoring.
-        </li>
-    </ul>
-  </div>
-
+          <p>For each positive-dose or matched zero-dose episode, predict the future MOAA/S level approximately 60 s after the index
+          time. The index dose, including 0 mg reference episodes, is an input. We will also report whether responsiveness increased,
+          remained unchanged, or decreased relative to the pre-index state. 
+          </p>
+          <p>Inputs:</p>
+          <ul style="list-style: disc outside; padding-left: 1.5rem;">
+            <li> 30 s of pre-index EEG, ECG, photoplethysmography, respiration, and available vital signs; </li>
+            <li> current MOAA/S and its measurement time; </li>
+            <li> index dose, prior propofol doses, cumulative dose, and time since the previous dose; </li>
+            <li> static patient and procedure information known at prediction time; </li>
+            <li> processed EEG parameters;</li>
+            <li> organizer-provided pharmacokinetic/pharmacodynamic features from the Eleveld model. </li>
+          </ul>
+          <p> Teams may use a subset of modalities. Missing modalities will be marked explicitly. </p>
+          </div>
       </div>
     </div>
   </div>
