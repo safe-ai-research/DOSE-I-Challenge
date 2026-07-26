@@ -1,4 +1,4 @@
-# DOSE-I
+# DOSE-I Challenge
 
 This repository contains the source files for the [DOSE-I Challenge website](https://safe-ai-research.github.io/DOSE-I-Challenge/).
 
