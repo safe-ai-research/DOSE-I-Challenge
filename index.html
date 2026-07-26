@@ -207,6 +207,14 @@
             </figcaption>
           </figure>
           -->
+          <figure style="margin-top: 2rem; text-align: center;">
+            <img src="static/images/10-033_plot.png"
+                 alt="EEG plot from recording 10-033"
+                 style="max-width: 100%; height: auto;">
+            <figcaption class="has-text-centered" style="margin-top: 0.5rem; font-style: italic;">
+              EEG recording from procedure 10-033 showing transitions in state of consciousness.
+            </figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -247,6 +255,13 @@
 
         <div class="content has-text-justified">
           <p>
+            Training examples will be derived from the public DOSE-I dataset. It contains 171 routine endoscopy recordings,
+            78.5 h of multimodal data, and repeated clinical responsiveness assessments. A feasibility audit identified 659
+            candidate positive-dose response episodes across 165 recordings under a provisional definition. Matched 0 mg 
+            reference episodes will be added without using future outcomes for matching. Final evaluation will use held-out 
+            recordings that are not publicly available.
+          </p>  
+          <p>
             The underlying DOSE-I dataset is available for download <a href="https://zenodo.org/records/18483292">via Zenodo</a>. Accompanying this dataset, we have published a comprehensive technical documentation <a href="https://doi.org/10.48550/arXiv.2607.02570">on arXiv</a>.
           </p>
           <p>
@@ -261,15 +276,6 @@
             This data is further annotated with state-of-consciousness, MOAS/S, and clinical events. For a sample recording, see below.
           </p>
 
-
-          <figure style="margin-top: 2rem; text-align: center;">
-            <img src="static/images/10-033_plot.png"
-                 alt="EEG plot from recording 10-033"
-                 style="max-width: 100%; height: auto;">
-            <figcaption class="has-text-centered" style="margin-top: 0.5rem; font-style: italic;">
-              EEG recording from procedure 10-033 showing transitions in state of consciousness.
-            </figcaption>
-          </figure>
         </div>
       </div>
     </div>
@@ -280,21 +286,16 @@
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Code</h2>
+        <h2 class="title is-3">Evaluation</h2>
 
         <div class="content has-text-justified">
           <p>
-            Accompanying code for analysis of the DOSE-I dataset is available
-            <a href="https://github.com/safe-ai-research/DOSE-I-Code">via our Github repository</a>.
+           The proposed primary score is recording-balanced mean absolute error for future MOAA/S, 
+           averaged equally across positive-dose and zero-dose episodes. Secondary results will include
+           direction-of-change macro-F1, rank correlation, and calibration. 
           </p>
-          <p>
-            The repository includes tools for converting
-            raw EEG data into a comprehensive set of processed EEG (pEEG) parameters,
-            documentation of all extracted features, and machine-learning models for
-            binary classification of conscious versus unconscious states.
-          </p>
-
         </div>
+        
       </div>
     </div>
   </div>
@@ -303,20 +304,14 @@
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    When citing this study and our DOSE-I research in general, please use the following reference:
-    <pre><code>@incollection{garbe2026sedationEEG,
-  author    = {Garbe, Jakob and Nguyen, Quang Vu and Kantelhardt, Jan W. and Dünninghaus, Florian
-               and Erffmeier, Karla and Seeliger, Katja and Schmid, Thomas},
-  title     = {Towards Predicting Sedation Depth in Endoscopy with Large Clinically Annotated
-               EEG Data of Continuous Propofol Sedation},
-  booktitle = {Artificial Intelligence in Medicine},
-  series    = {Lecture Notes in Computer Science},
-  volume    = {16749},
-  publisher = {Springer},
-  year      = {2026}
-}
-</code></pre>
+    <h2 class="title">Important Dates/h2>
+      <pre><code>
+      Challenge opens:              October 1, 2026
+      Final submission deadline:    December 1, 2026
+      Results and invitations:      December 8, 2026
+      Invited 2-page papers due:    January 7, 2027
+      ICASSP 2027:                  May 16–21, 2027, Toronto, Canada
+      </code></pre>
   </div>
 </section>
   
@@ -330,11 +325,7 @@
         <div class="content has-text-justified">
           <p>
             This work was supported by <em>Deutsche Forschungsgemeinschaft</em> (DFG, German Research
-            Foundation) under <a href="https://gepris.dfg.de/gepris/projekt/547230187">Project number 547230187</a>. We thank the
-            neurologists Dr. Josephin Damm (Halle, Germany) and Dr. Leona Möller (Marburg,
-            Germany) for annotation of EEGs and for their insights into signal quality, and 
-            bioinformatician Dr. Jan Grau for sharing and discussing his early prototype SoC
-            classifier.
+            Foundation) under <a href="https://gepris.dfg.de/gepris/projekt/547230187">Project number 547230187</a>.
           </p>
           
         </div>
