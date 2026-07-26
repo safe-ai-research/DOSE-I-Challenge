@@ -1,6 +1,6 @@
 # DOSE-I
 
-This repository contains the source files for the [DOSE-I Challenge website](https://safe-ai-research.github.io/DOSE-I/).
+This repository contains the source files for the [DOSE-I Challenge website](https://safe-ai-research.github.io/DOSE-I-Challenge/).
 
 The DOSE-I dataset is available on [Zenodo](https://doi.org/10.5281/zenodo.18483291).
 
