@@ -241,22 +241,92 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Main Task</h2>
+        
           <div class="notification is-light">
-          <p>For each positive-dose or matched zero-dose episode, predict the future MOAA/S level approximately 60 s after the index
-          time. The index dose, including 0 mg reference episodes, is an input. We will also report whether responsiveness increased,
-          remained unchanged, or decreased relative to the pre-index state. 
-          </p>
-          <p>Inputs:</p>
-          <ul style="list-style: disc outside; padding-left: 1.5rem;">
-            <li> 30 s of pre-index EEG, ECG, photoplethysmography, respiration, and available vital signs; </li>
-            <li> current MOAA/S and its measurement time; </li>
-            <li> index dose, prior propofol doses, cumulative dose, and time since the previous dose; </li>
-            <li> static patient and procedure information known at prediction time; </li>
-            <li> processed EEG parameters;</li>
-            <li> organizer-provided pharmacokinetic/pharmacodynamic features from the Eleveld model. </li>
-          </ul>
-          <p> Teams may use a subset of modalities. Missing modalities will be marked explicitly. </p>
+            <p>
+              For each positive-dose or matched zero-dose episode, predict the future MOAA/S level approximately 60 s after the index
+              time. The index dose, including 0 mg reference episodes, is an input. We will also report whether responsiveness increased,
+              remained unchanged, or decreased relative to the pre-index state. 
+            </p>
+            <p>
+              Inputs:
+            </p>
+            <ul style="list-style: disc outside; padding-left: 1.5rem;">
+              <li> 30 s of pre-index EEG, ECG, photoplethysmography, respiration, and available vital signs; </li>
+              <li> current MOAA/S and its measurement time; </li>
+              <li> index dose, prior propofol doses, cumulative dose, and time since the previous dose; </li>
+              <li> static patient and procedure information known at prediction time; </li>
+              <li> processed EEG parameters;</li>
+              <li> organizer-provided pharmacokinetic/pharmacodynamic features from the Eleveld model. </li>
+            </ul>
+            <p> 
+              Teams may use a subset of modalities. Missing modalities will be marked explicitly. 
+            </p>
           </div>
+
+         <div class="tabs-layout">
+            <div class="tabs">
+
+              <input type="radio" name="tabs" id="data-tab1" checked>
+              <input type="radio" name="tabs" id="data-tab2">
+              <input type="radio" name="tabs" id="data-tab3">
+
+              <div class="tab-buttons">
+                <label for="data-tab1">Primary Prediction Task</label>
+                <label for="data-tab2">Zero-dose Reference Episodes</label>
+                <label for="data-tab3">Exploratory Induction Benchmark</label>
+              </div>
+
+              <div class="tab-content content content1">
+                <p>
+                  Propofol was administered in boluses. During real-time annotation, each bolus was documented as repeated 10mg event
+                  markers and grouped again in post-processing as long as event markers were less than 10 s apart. Each bolus is timestamped
+                  to the first in a group of 10mg event markers. The model receives data from the 30 s interval ending at episode start. The
+                  outcome is the nearest future MOAA/S assessment to 60 s after the bolus, within a tolerance of 15 s. Episodes are excluded
+                  if another administration begins before the outcome assessment.
+                </p>
+                <p>
+                  The primary target is the direction-of-change of the future MOAA/S level. Direction of change is derived as
+                </p>
+                <p>
+                  ychange = sign(M OAA/Spre − M OAA/Sfuture),
+                </p>
+                <p>
+                  where −1 means more responsive, 0 unchanged, and +1 less responsive.
+                </p>  
+                <p>
+                  The current feasibility audit found class counts of 19, 284, and 356 for the positive-dose episodes. 
+                  Direction-of-change results will therefore be reported as a secondary analysis.
+                </p>
+              </div>
+  
+              <div class="tab-content content content2">
+                <p>
+                  The challenge includes matched 0 mg reference episodes. These are real clinical time points 
+                  without a new propofol administration before the target assessment. They use the same input 
+                  and target format as positive-dose episodes.
+                </p>
+                <p>
+                  Matching uses only information available at the index time, such as current MOAA/S, elapsed 
+                  procedure time, prior propofol exposure, and time since the previous dose. Outcomes are not 
+                  used for matching. The primary dataset uses at most a 1:1 zero-dose to positive-dose ratio. 
+                  Performance is reported separately for both strata.
+                </p>
+              </div>
+
+              <div class="tab-content content content3">
+                <p>
+                  A small optional benchmark provides participants the opportunity to predict the observed cumulative induction 
+                  dose until the first documented MOAA/S 1 endpoint. This is not an optimal or recommended dose. 
+                  It also reflects clinical titration decisions. The audit supports this only as an exploratory 
+                  benchmark with about one independent example per recording. Early supplemental-dose
+                  prediction will not be used unless the clinical event definition can be resolved.
+                </p>
+              </div>
+              
+            </div> 
+          </div>
+        
       </div>
     </div>
   </div>
@@ -268,7 +338,7 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Data</h2>
 
-        <div class="content has-text-justified">
+         <div class="content has-text-justified">
           <p>
             Training examples will be derived from the public DOSE-I dataset. It contains 171 routine endoscopy recordings,
             78.5 h of multimodal data, and repeated clinical responsiveness assessments. A feasibility audit identified 659
@@ -290,8 +360,44 @@
             </ul>
             This data is further annotated with state-of-consciousness, MOAS/S, and clinical events. For a sample recording, see below.
           </p>
+         </div>
+        
+         <div class="tabs-layout">
+            <div class="tabs">
 
-        </div>
+              <input type="radio" name="tabs" id="data-tab1" checked>
+              <input type="radio" name="tabs" id="data-tab2">
+              <input type="radio" name="tabs" id="data-tab3">
+
+              <div class="tab-buttons">
+                <label for="data-tab1">Primary Score</label>
+                <label for="data-tab2">Secondary Score</label>
+                <label for="data-tab3">Baseline Implementations</label>
+              </div>
+
+              <div class="tab-content content content1">
+                <p>
+                  A
+                </p>
+              </div>
+  
+              <div class="tab-content content content2">
+                <p>
+                  B
+                </p>
+              </div>
+
+              <div class="tab-content content content3">
+                <p>
+                  C
+                </p>
+              </div>
+              
+            </div> 
+          </div>
+
+
+        
       </div>
     </div>
   </div>
@@ -302,6 +408,13 @@
     <div class="columns is-centered">
       <div class="column is-full-width">
          <h2 class="title is-3">Evaluation</h2>
+         <p>
+           Final evaluation will use an independent and non-public dataset of 150 recordings collected under a closely matched protocol.
+           50 of these recordings will be used for intra-challenge feedback, 100 of these recordings for final evaluation. The organizer
+           pipeline will harmonize modalities, labels, and episode definitions before evaluation. No labels or signal windows will be
+           released.
+         </p>
+        
          <div class="tabs-layout">
           <div class="tabs">
 
