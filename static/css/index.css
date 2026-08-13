@@ -175,6 +175,8 @@ body {
 /* Tab-Leiste */
 .tab-buttons {
   display: flex;
+  width: 100%;
+  box-sizing: border-box;
   gap: 2px;
 }
 
