@@ -166,8 +166,8 @@ body {
 }
 
 /* Radio-Buttons verstecken */
-.tabs > input {
-  display: none;
+.tabs > input[type="radio"] { 
+  display: none; 
 }
 
 /* Tab-Leiste */
