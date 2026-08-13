@@ -161,7 +161,8 @@ body {
 
 .tabs {
   max-width: 100%;
-  /*font-family: Arial, sans-serif;*/
+  width: 100%;
+  box-sizing: border-box;
 }
 
 
