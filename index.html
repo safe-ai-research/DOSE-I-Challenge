@@ -316,7 +316,6 @@
             </div>
 
             <div class="tab-content content1">
-              <h3>Primary Score</h3>
               <p>
                 The primary score is recording-balanced mean absolute error for future MOAA/S, 
                 averaged equally across positive-dose and zero-dose episodes:
@@ -332,28 +331,26 @@
             </div>
   
             <div class="tab-content content2">
-            <h3>Secondary Scores</h3>
                <p>
                 Secondary metrics are:
               </p>
               <ul>
-                <li> direction-of-change
-                <li> macro-F1
-                <li> balanced accuracy
-                <li> Spearman correlation
-                <li> probability calibration
+                <li> direction-of-change </li>
+                <li> macro-F1 </li>
+                <li> balanced accuracy </li>
+                <li> Spearman correlation </li>
+                <li> probability calibration </li>
               </ul>
             </div>
 
             <div class="tab-content content3">
-              <h3>Baseline Implementations</h3>
                  <p>
                   Three simple reproducible baseline implementations are provided by the challenge:
                 </p>
                 <ul>
-                  <li> persistence: future MOAA/S equals current MOAA/S;
-                  <li> a tabular model using current state, dose, dose history, static data, and Eleveld features;
-                  <li> a small raw-signal baseline using the 30 s biosignal window.
+                  <li> persistence: future MOAA/S equals current MOAA/S; </li>
+                  <li> a tabular model using current state, dose, dose history, static data, and Eleveld features; </li>
+                  <li> a small raw-signal baseline using the 30 s biosignal window. </li>
                 </ul>    
                 <p>
                   Standardized ablations will compare clinical/dose features, Eleveld features, pEEG, raw biosignals, and the full model.
