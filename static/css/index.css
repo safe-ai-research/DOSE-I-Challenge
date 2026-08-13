@@ -160,9 +160,10 @@ body {
 /* TABS */
 
 .tabs {
-  display: block;
-  max-width: 100%;
-  width: 100%;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
   box-sizing: border-box;
 }
 
@@ -218,4 +219,8 @@ body {
 
 .tabs-layout {
   display: block;
+}
+
+.column.is-full-width {
+  min-width: 0;
 }
