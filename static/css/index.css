@@ -159,7 +159,7 @@ body {
 
 
 /* =========================
-   TABS
+   REUSABLE TABS
    ========================= */
 
 .tabs {
@@ -175,7 +175,7 @@ body {
   display: none;
 }
 
-/* Tab-Leiste */
+/* Tab buttons */
 .tabs .tab-buttons {
   display: flex;
   width: 100%;
@@ -194,7 +194,7 @@ body {
   background: #ccc;
 }
 
-/* Tab-Inhalte */
+/* Tab content */
 .tabs .tab-content {
   display: none;
   width: 100%;
@@ -206,32 +206,62 @@ body {
   overflow: hidden;
 }
 
-/* Aktiven Tab anzeigen */
-.tabs > input[type="radio"]:nth-of-type(1):checked ~ .content1,
-.tabs > input[type="radio"]:nth-of-type(2):checked ~ .content2,
-.tabs > input[type="radio"]:nth-of-type(3):checked ~ .content3 {
+/* ---------------------------------
+   Aktiven Tab anzeigen
+   --------------------------------- */
+
+.tabs:has(> input[type="radio"]:nth-of-type(1):checked)
+  > .content1 {
   display: block;
 }
 
-/* Aktiven Tab hervorheben */
-.tabs > input[type="radio"]:nth-of-type(1):checked ~ .tab-buttons label:nth-child(1),
-.tabs > input[type="radio"]:nth-of-type(2):checked ~ .tab-buttons label:nth-child(2),
-.tabs > input[type="radio"]:nth-of-type(3):checked ~ .tab-buttons label:nth-child(3) {
+.tabs:has(> input[type="radio"]:nth-of-type(2):checked)
+  > .content2 {
+  display: block;
+}
+
+.tabs:has(> input[type="radio"]:nth-of-type(3):checked)
+  > .content3 {
+  display: block;
+}
+
+.tabs:has(> input[type="radio"]:nth-of-type(4):checked)
+  > .content4 {
+  display: block;
+}
+
+.tabs:has(> input[type="radio"]:nth-of-type(5):checked)
+  > .content5 {
+  display: block;
+}
+
+/* ---------------------------------
+   Aktiven Button hervorheben
+   --------------------------------- */
+
+.tabs:has(> input[type="radio"]:nth-of-type(1):checked)
+  > .tab-buttons label:nth-child(1),
+
+.tabs:has(> input[type="radio"]:nth-of-type(2):checked)
+  > .tab-buttons label:nth-child(2),
+
+.tabs:has(> input[type="radio"]:nth-of-type(3):checked)
+  > .tab-buttons label:nth-child(3),
+
+.tabs:has(> input[type="radio"]:nth-of-type(4):checked)
+  > .tab-buttons label:nth-child(4),
+
+.tabs:has(> input[type="radio"]:nth-of-type(5):checked)
+  > .tab-buttons label:nth-child(5) {
   background: white;
   border: 1px solid #ccc;
   border-bottom: none;
 }
 
-/* Layout */
-.tabs-layout {
-  display: block;
-}
+/* ---------------------------------
+   Text
+   --------------------------------- */
 
-.column.is-full-width {
-  min-width: 0;
-}
-
-/* Textumbruch */
 .tabs .tab-content p,
 .tabs .tab-content li {
   white-space: normal;
@@ -239,7 +269,6 @@ body {
   word-break: normal;
 }
 
-/* Absätze */
 .tabs .tab-content p {
   display: block;
   width: 100%;
@@ -249,7 +278,10 @@ body {
   margin-bottom: 1rem;
 }
 
-/* Listen */
+/* ---------------------------------
+   Listen
+   --------------------------------- */
+
 .tabs .tab-content ul,
 .tabs .tab-content ol {
   display: block;
