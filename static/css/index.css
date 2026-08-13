@@ -199,8 +199,9 @@ body {
   display: none;
   padding: 20px;
   border: 1px solid #ccc;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
+  overflow-x: hidden;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 /* Aktiven Inhalt anzeigen */
@@ -229,6 +230,9 @@ body {
 
 /* Make text wrap */
 .tab-content p,
-.tab-content li {
+.tab-content li,
+.tab-content div,
+.tab-content span {
   overflow-wrap: anywhere;
+  word-break: break-word;
 }
