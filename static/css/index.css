@@ -226,3 +226,9 @@ body {
 .column.is-full-width {
   min-width: 0;
 }
+
+/* Make text wrap */
+.tab-content p,
+.tab-content li {
+  overflow-wrap: anywhere;
+}
