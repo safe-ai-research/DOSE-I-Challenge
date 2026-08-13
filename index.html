@@ -167,17 +167,17 @@
   </div>
 </section>
 
-
-  <!--
   <section class="section">
   <div class="container is-max-desktop">
     <!-- Abstract. 
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
+        <h2 class="title is-3">Call for Partcipation</h2>
         <div class="content has-text-justified">
           <p>
-            Brain function monitors are a widely used tool in general anesthesia. For monitoring drug effects in procedural sedation, however, no objective device is currently available. While available monitors offer no clinically significant benefit in sedation, the reasons are not well understood and labeled data lacking. To enable a data-driven approach for sedation depth prediction, we collected 2-channel fronto-temporal EEG signals enhanced with additional biosignals during Propofol sedation for gastrointestinal and bronchoscopic endoscopies. A total of 171 recordings were annotated in real-time with clinical events and the State of Consciousness (SoC) as well as clinical Sedation Depth. Overall, 78.5 hours of multimodal biosignal data with 1129 transitions of the SoC and 7328 sedation depth data points measured on the MOAA/S scale have been collected. Applying advanced feature engineering and basic machine learning, we demonstrate that this data is suitable for predicting SoC and provides a sound foundation for research towards a reliable prediction of sedation depth. Notably, we introduce the underlying DOSE-I dataset as the first public large-scale EEG-based multimodal dataset in routine procedural sedation with rich clinical labeling.
+            We invite teams from signal processing, machine learning, clinical monitoring, anesthesia, neuroscience, and consciousness research. 
+            The challenge asks participants to forecast a clinically observed response to propofol from information available at
+            the time of administration. Training data will be public. Final evaluation will use an independent and unreleased clinical cohort.
           </p>
         </div>
       </div>
@@ -185,7 +185,7 @@
     <!--/ Abstract.
   </div>
   </section>
-  -->
+  
 
   <section class="section">
   <div class="container is-max-desktop">
@@ -195,10 +195,23 @@
 
         <div class="content has-text-justified">
           <p>
-            We invite teams from signal processing, machine learning, clinical monitoring, anesthesia, neuroscience, and consciousness research. 
-            The challenge asks participants to forecast a clinically observed response to propofol from information available at
-            the time of administration. Training data will be public. Final evaluation will use an independent and unreleased clinical cohort.
+            Propofol response differs between patients and also within the same patient over time. Clinical staff therefore titrate sedation
+            from the current response, prior doses, physiology, and experience. Existing brain-function monitors mainly estimate the
+            current sedation state. They can lag behind clinical changes and have shown limited benefit in procedural sedation. A
+            useful model should instead anticipate the next state.
           </p>
+          <p>
+            This challenge treats propofol administration as a known perturbation of a changing physiological system. The main
+            question is simple: Does the pre-dose brain and body state contain information about the future response beyond current
+            responsiveness, dose history, patient characteristics, and standard pharmacokinetic estimates?
+          </p>
+          <p>
+            The task is clinically relevant but remains modest in scope. The target is observed behavioral responsiveness. It is not
+            a direct measure of subjective experience. Still, reliable forecasting of a behaviorally defined state transition under a
+            pharmacological perturbation can also support serious consciousness research. It tests state-dependent susceptibility rather
+            than only separating already existing states
+          </p>
+          
           <!--
           <figure style="margin-top: 2rem; text-align: center;">
             <img src="static/images/10CV_Boxplots.png"
@@ -290,14 +303,64 @@
       <div class="column is-full-width">
         <h2 class="title is-3">Evaluation</h2>
 
-        <div class="content has-text-justified">
-          <p>
-           The proposed primary score is recording-balanced mean absolute error for future MOAA/S, 
-           averaged equally across positive-dose and zero-dose episodes. Secondary results will include
-           direction-of-change macro-F1, rank correlation, and calibration. 
-          </p>
+          <div class="tabs">
+
+            <input type="radio" name="tabs" id="tab1" checked>
+            <input type="radio" name="tabs" id="tab2">
+            <input type="radio" name="tabs" id="tab3">
+
+            <div class="tab-buttons">
+                <label for="tab1">Allgemein</label>
+                <label for="tab2">Details</label>
+                <label for="tab3">Kontakt</label>
+            </div>
+
+            <div class="tab-content content1">
+              <h3>Primary Score</h3>
+              <p>
+                The primary score is recording-balanced mean absolute error for future MOAA/S, 
+                averaged equally across positive-dose and zero-dose episodes:
+              </p>
+              <p>
+                where each MAE is first averaged within recording and then across recordings. Lower is better. This prevents patients
+                with many episodes or a larger zero-dose subset from dominating the ranking.
+              </p>  
+              <p>
+                Teams will submit one future MOAA/S prediction per episode and may additionally submit a probability distribution over
+                levels.
+              </p>
+  
+            <div class="tab-content content2">
+            <h3>Secondary Scores</h3>
+               <p>
+                Secondary metrics are:
+              </p>
+              <ul>
+                <li> direction-of-change
+                <li> macro-F1
+                <li> balanced accuracy
+                <li> Spearman correlation
+                <li> probability calibration
+              </ul>
+            </div>
+
+            <div class="tab-content content3">
+              <h3>Baseline Implementations</h3>
+                 <p>
+                  Three simple reproducible baseline implementations are provided by the challenge:
+                </p>
+                <ul>
+                  <li> persistence: future MOAA/S equals current MOAA/S;
+                  <li> a tabular model using current state, dose, dose history, static data, and Eleveld features;
+                  <li> a small raw-signal baseline using the 30 s biosignal window.
+                </ul>    
+                <p>
+                  Standardized ablations will compare clinical/dose features, Eleveld features, pEEG, raw biosignals, and the full model.
+                </p>
+            </div>
+            
+          </div>
         </div>
-        
       </div>
     </div>
   </div>
