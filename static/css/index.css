@@ -156,3 +156,57 @@ body {
 #interpolation-image-wrapper img {
   border-radius: 5px;
 }
+
+/* TABS */
+
+/*
+.tabs {
+  max-width: 600px;
+  font-family: Arial, sans-serif;
+}
+*/
+
+/* Radio-Buttons verstecken */
+.tabs > input {
+  display: none;
+}
+
+/* Tab-Leiste */
+.tab-buttons {
+  display: flex;
+  gap: 2px;
+}
+
+.tab-buttons label {
+  padding: 10px 20px;
+  background: #ddd;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+}
+
+.tab-buttons label:hover {
+  background: #ccc;
+}
+
+/* Inhalte */
+.tab-content {
+  display: none;
+  padding: 20px;
+  border: 1px solid #ccc;
+}
+
+/* Aktiven Inhalt anzeigen */
+#tab1:checked ~ .content1,
+#tab2:checked ~ .content2,
+#tab3:checked ~ .content3 {
+  display: block;
+}
+
+/* Aktiven Tab hervorheben */
+#tab1:checked ~ .tab-buttons label[for="tab1"],
+#tab2:checked ~ .tab-buttons label[for="tab2"],
+#tab3:checked ~ .tab-buttons label[for="tab3"] {
+  background: white;
+  border: 1px solid #ccc;
+  border-bottom: none;
+}
