@@ -159,12 +159,11 @@ body {
 
 /* TABS */
 
-/*
 .tabs {
-  max-width: 600px;
-  font-family: Arial, sans-serif;
+  max-width: 100%;
+  /*font-family: Arial, sans-serif;*/
 }
-*/
+
 
 /* Radio-Buttons verstecken */
 .tabs > input {
