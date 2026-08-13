@@ -157,7 +157,10 @@ body {
   border-radius: 5px;
 }
 
-/* TABS */
+
+/* =========================
+   TABS
+   ========================= */
 
 .tabs {
   display: block !important;
@@ -168,8 +171,8 @@ body {
 }
 
 /* Radio-Buttons verstecken */
-.tabs > input[type="radio"] { 
-  display: none; 
+.tabs > input[type="radio"] {
+  display: none;
 }
 
 /* Tab-Leiste */
@@ -191,20 +194,19 @@ body {
   background: #ccc;
 }
 
-/* Inhalte */
+/* Tab-Inhalte */
 .tab-content {
+  display: none;
   width: 100%;
   max-width: 100%;
+  min-width: 0;
   box-sizing: border-box;
-  display: none;
   padding: 20px;
   border: 1px solid #ccc;
-  overflow-x: hidden;
-  overflow-wrap: anywhere;
-  word-break: break-word;
+  overflow: hidden;
 }
 
-/* Aktiven Inhalt anzeigen */
+/* Aktiven Tab anzeigen */
 #tab1:checked ~ .content1,
 #tab2:checked ~ .content2,
 #tab3:checked ~ .content3 {
@@ -220,6 +222,7 @@ body {
   border-bottom: none;
 }
 
+/* Layout */
 .tabs-layout {
   display: block;
 }
@@ -228,79 +231,40 @@ body {
   min-width: 0;
 }
 
-/* Make text wrap */
+/* Textumbruch */
 .tab-content p,
-.tab-content li,
-.tab-content div,
-.tab-content span {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
 .tab-content li {
-  display: list-item;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
-.tab-content ul {
-    list-style: disc;
-    margin-left: 1.5rem;
-}
-
-.tab-content ol {
-    list-style: decimal;
-    margin-left: 1.5rem;
-}
-
-/* DEBUG / OVERRIDE */
-
-.tab-content {
-  display: none;
+/* Absätze */
+.tab-content p {
+  display: block;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  padding: 20px;
-  border: 1px solid #ccc;
-
-  /* verhindert Überlaufen des Inhalts */
-  overflow: hidden;
-  overflow-wrap: anywhere;
-}
-
-#tab1:checked ~ .content1,
-#tab2:checked ~ .content2,
-#tab3:checked ~ .content3 {
-  display: block;
-}
-
-.tab-content p {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-
-  white-space: normal !important;
-  overflow-wrap: break-word !important;
-  word-break: normal !important;
-
   margin-top: 0;
   margin-bottom: 1rem;
 }
 
+/* Listen */
 .tab-content ul {
-  display: block !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
+  display: block;
+  margin: 1em 0;
+  padding-left: 2em;
+  list-style-type: disc;
+}
 
-  list-style-type: disc !important;
-  margin: 1em 0 !important;
-  padding-left: 2em !important;
+.tab-content ol {
+  display: block;
+  margin: 1em 0;
+  padding-left: 2em;
+  list-style-type: decimal;
 }
 
 .tab-content li {
-  display: list-item !important;
-  width: auto !important;
-
-  white-space: normal !important;
-  overflow-wrap: break-word !important;
-  word-break: normal !important;
+  display: list-item;
+  width: auto;
 }
