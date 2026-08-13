@@ -236,3 +236,7 @@ body {
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+
+.tab-content li {
+  display: list-item;
+}
