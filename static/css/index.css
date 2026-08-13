@@ -165,7 +165,6 @@ body {
   box-sizing: border-box;
 }
 
-
 /* Radio-Buttons verstecken */
 .tabs > input {
   display: none;
@@ -214,3 +213,4 @@ body {
 .columns.tabs-layout {
   display: block;
 }
+
