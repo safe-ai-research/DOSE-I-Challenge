@@ -211,7 +211,6 @@ body {
   border-bottom: none;
 }
 
-.columns.tabs-layout {
+.tabs-layout {
   display: block;
 }
-
