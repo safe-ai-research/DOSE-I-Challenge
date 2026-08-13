@@ -240,3 +240,15 @@ body {
 .tab-content li {
   display: list-item;
 }
+
+.tab-content ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+}
+
+.tab-content ol {
+    list-style: decimal;
+    margin-left: 1.5rem;
+}
+
+
