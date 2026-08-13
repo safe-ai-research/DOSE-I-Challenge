@@ -196,6 +196,8 @@ body {
   display: none;
   padding: 20px;
   border: 1px solid #ccc;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 /* Aktiven Inhalt anzeigen */
@@ -212,16 +214,8 @@ body {
   background: white;
   border: 1px solid #ccc;
   border-bottom: none;
-  display: block;
-  max-width: 100%;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .tabs-layout {
   display: block;
-  display: block;
-  max-width: 100%;
-  width: 100%;
-  box-sizing: border-box;
 }
