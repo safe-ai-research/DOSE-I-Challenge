@@ -172,21 +172,21 @@
     <!-- Abstract -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Call for Partcipation</h2>
+      <div class="notification is-light">
+        <h2 class="title is-3">Can we predict how a patient’s responsiveness will change before a propofol dose takes effect?</h2>
         <div class="content has-text-justified">
           <p>
-            We invite teams from signal processing, machine learning, clinical monitoring, anesthesia, neuroscience, and consciousness research. 
-            The challenge asks participants to forecast a clinically observed response to propofol from information available at
-            the time of administration. Training data will be public. Final evaluation will use an independent and unreleased clinical cohort.
+            For this ICASSP 2027 Signal Processing Grand Challenge, we invite teams from signal processing, machine learning, clinical monitoring, anesthesia, neuroscience, and consciousness research. The challenge asks participants to forecast a clinically observed response to propofol from multimodal signal information available at the time of administration. Training data is publicly available. Final evaluation will use an independent and unreleased clinical cohort. The challenge is open October 1 to December 1, 2026.
           </p>
         </div>
+      </div>
       </div>
     </div>
     <!--/ Abstract -->
   </div>
   </section>
   
-
+  <!-- Motivation -->
   <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -195,21 +195,13 @@
 
         <div class="content has-text-justified">
           <p>
-            Propofol response differs between patients and also within the same patient over time. Clinical staff therefore titrate sedation
-            from the current response, prior doses, physiology, and experience. Existing brain-function monitors mainly estimate the
-            current sedation state. They can lag behind clinical changes and have shown limited benefit in procedural sedation. A
-            useful model should instead anticipate the next state.
+            Propofol, an intravenous anaesthetic agent used to induce and maintain sedation, produces responses that vary both between patients and within the same patient over time. In clinical practice, sedation is therefore adjusted using the patient’s current response together with prior doses and physiological information. This raises the question: Can we predict how a patient’s responsiveness will change before a propofol dose takes effect? Existing brain-function monitors primarily estimate the current sedation state rather than predicting how it will change following a dose.
           </p>
           <p>
-            This challenge treats propofol administration as a known perturbation of a changing physiological system. The main
-            question is simple: Does the pre-dose brain and body state contain information about the future response beyond current
-            responsiveness, dose history, patient characteristics, and standard pharmacokinetic estimates?
+            From a signal-processing and machine-learning perspective, this is a challenging forecasting problem: heterogeneous and noisy observations must be mapped to an evolving, only indirectly observed physiological state and then to a clinically meaningful future response. The mapping may vary across patients and over time, making generalization non-trivial. While current-state estimation is possible, it remains unclear whether information available before a propofol dose takes effect contains sufficient signal to anticipate the subsequent response. This motivates investigating whether pre-dose observations can predict changes in responsiveness.
           </p>
           <p>
-            The task is clinically relevant but remains modest in scope. The target is observed behavioral responsiveness. It is not
-            a direct measure of subjective experience. Still, reliable forecasting of a behaviorally defined state transition under a
-            pharmacological perturbation can also support serious consciousness research. It tests state-dependent susceptibility rather
-            than only separating already existing states
+            The task is clinically relevant but remains modest in scope. The target is observed behavioral responsiveness. It is not a direct measure of subjective experience. Still, reliable forecasting of a behaviorally defined state transition under a pharmacological perturbation can also support serious consciousness research. It tests state-dependent susceptibility rather than only separating already existing states
           </p>
           
           <!--
@@ -222,49 +214,29 @@
             </figcaption>
           </figure>
           -->
-          <figure style="margin-top: 2rem; text-align: center;">
-            <img src="static/images/10-033_plot.png"
-                 alt="EEG plot from recording 10-033"
-                 style="max-width: 100%; height: auto;">
-            <figcaption class="has-text-centered" style="margin-top: 0.5rem; font-style: italic;">
-              EEG recording from procedure 10-033 showing transitions in state of consciousness.
-            </figcaption>
-          </figure>
+
         </div>
       </div>
     </div>
   </div>
   </section>
 
+  <!-- Task -->
   <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Main Task</h2>
-        
-          <div class="notification is-light">
+        <h2 class="title is-3">Prediction Tasks</h2>
+          <div class="content has-text-justified">
             <p>
-              For each positive-dose or matched zero-dose episode, predict the future MOAA/S level approximately 60 s after the index
-              time. The index dose, including 0 mg reference episodes, is an input. We will also report whether responsiveness increased,
-              remained unchanged, or decreased relative to the pre-index state. 
+              This challenge treats propofol administration as a known perturbation of a changing physiological system.  Propofol was administered in boluses. During real-time annotation, each bolus was documented as repeated 10mg event markers and grouped again in post-processing as long as event markers were less than 10 s apart. Each bolus is timestamped
+              to the first in a group of 10mg event markers.
             </p>
             <p>
-              Inputs:
-            </p>
-            <ul style="list-style: disc outside; padding-left: 1.5rem;">
-              <li> 30 s of pre-index EEG, ECG, photoplethysmography, respiration, and available vital signs; </li>
-              <li> current MOAA/S and its measurement time; </li>
-              <li> index dose, prior propofol doses, cumulative dose, and time since the previous dose; </li>
-              <li> static patient and procedure information known at prediction time; </li>
-              <li> processed EEG parameters;</li>
-              <li> organizer-provided pharmacokinetic/pharmacodynamic features from the Eleveld model. </li>
-            </ul>
-            <p> 
-              Teams may use a subset of modalities. Missing modalities will be marked explicitly. 
+              The main question is simple: Does the pre-dose brain and body state contain information about the future response beyond current responsiveness, dose history, patient characteristics, and standard pharmacokinetic estimates?
             </p>
           </div>
-
-         <div class="tabs-layout">
+          <div class="tabs-layout">
             <div class="tabs">
 
               <input type="radio" name="task-tabs" id="task-tab1" checked>
@@ -273,44 +245,52 @@
 
               <div class="tab-buttons">
                 <label for="task-tab1">Primary Prediction Task</label>
-                <label for="task-tab2">Zero-dose Reference Episodes</label>
+                <label for="task-tab2">Secondary Prediction Task</label>
                 <label for="task-tab3">Exploratory Induction Benchmark</label>
               </div>
 
               <div class="tab-content content content1">
                 <p>
-                  Propofol was administered in boluses. During real-time annotation, each bolus was documented as repeated 10mg event
-                  markers and grouped again in post-processing as long as event markers were less than 10 s apart. Each bolus is timestamped
-                  to the first in a group of 10mg event markers. The model receives data from the 30 s interval ending at episode start. The
-                  outcome is the nearest future MOAA/S assessment to 60 s after the bolus, within a tolerance of 15 s. Episodes are excluded
+                  For each positive-dose or matched zero-dose episode, predict the <b>future MOAA/S level</b> approximately 60 s after the index time.
+                  The model receives data from the 30 s interval ending at episode start. The outcome is the nearest future MOAA/S assessment to 60 s after the bolus, within a tolerance of 15 s.
+                </p>
+                <p>
+                  Episodes are excluded
                   if another administration begins before the outcome assessment.
-                </p>
-                <p>
-                  The primary target is the direction-of-change of the future MOAA/S level. Direction of change is derived as
-                </p>
-                <p>
-                  ychange = sign(M OAA/Spre − M OAA/Sfuture),
-                </p>
-                <p>
-                  where −1 means more responsive, 0 unchanged, and +1 less responsive.
-                </p>  
-                <p>
-                  The current feasibility audit found class counts of 19, 284, and 356 for the positive-dose episodes. 
-                  Direction-of-change results will therefore be reported as a secondary analysis.
                 </p>
               </div>
   
               <div class="tab-content content content2">
                 <p>
-                  The challenge includes matched 0 mg reference episodes. These are real clinical time points 
-                  without a new propofol administration before the target assessment. They use the same input 
-                  and target format as positive-dose episodes.
+                  The secondary target is the direction-of-change of the future MOAA/S level. Direction of change is derived as
                 </p>
                 <p>
-                  Matching uses only information available at the index time, such as current MOAA/S, elapsed 
-                  procedure time, prior propofol exposure, and time since the previous dose. Outcomes are not 
-                  used for matching. The primary dataset uses at most a 1:1 zero-dose to positive-dose ratio. 
-                  Performance is reported separately for both strata.
+                <math>
+                  <msub>
+                    <mi>y</mi>
+                    <mi>change</mi>
+                  </msub>
+                  <mo>=</mo>
+                  <mi>sign</mi>
+                  <mo>(</mo>
+                  <msub>
+                    <mtext>MOAA/S</mtext>
+                    <mi>pre</mi>
+                  </msub>
+                  <mo>−</mo>
+                  <msub>
+                    <mtext>MOAA/S</mtext>
+                    <mi>future</mi>
+                  </msub>
+                  <mo>)</mo>
+                </math>
+                </p>
+                <p>
+                  where −1 means more responsive, 0 unchanged, and +1 less responsive.
+                </p>
+                <p>
+                  The current feasibility audit found class counts of 19, 284, and 356 for the positive-dose episodes.
+                  Direction-of-change results will therefore be reported as a secondary analysis.
                 </p>
               </div>
 
@@ -319,19 +299,21 @@
                   A small optional benchmark provides participants the opportunity to predict the observed cumulative induction 
                   dose until the first documented MOAA/S 1 endpoint. This is not an optimal or recommended dose. 
                   It also reflects clinical titration decisions. The audit supports this only as an exploratory 
-                  benchmark with about one independent example per recording. Early supplemental-dose
-                  prediction will not be used unless the clinical event definition can be resolved.
+                  benchmark with about one independent example per recording.
+                </p>
+                <p>
+                  Early supplemental-dose prediction will not be used unless the clinical event definition can be resolved.
                 </p>
               </div>
               
-            </div> 
+            </div>
           </div>
-        
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Data -->
   <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -340,26 +322,22 @@
 
          <div class="content has-text-justified">
           <p>
-            Training examples will be derived from the public DOSE-I dataset. It contains 171 routine endoscopy recordings,
-            78.5 h of multimodal data, and repeated clinical responsiveness assessments. A feasibility audit identified 659
+            Training examples will be derived from the publicly available DOSE-I dataset, which contains 171 routine endoscopy recordings, 78.5 h of multimodal data, and repeated clinical responsiveness assessments. The DOSE-I dataset is available for download <a href="https://zenodo.org/records/18483292">via Zenodo</a>. Accompanying this dataset, we have published a comprehensive technical documentation <a href="https://doi.org/10.48550/arXiv.2607.02570">on arXiv</a>.
+          </p>
+          <p>
+             A feasibility audit identified 659
             candidate positive-dose response episodes across 165 recordings under a provisional definition. Matched 0 mg 
             reference episodes will be added without using future outcomes for matching. Final evaluation will use held-out 
             recordings that are not publicly available.
           </p>  
-          <p>
-            The underlying DOSE-I dataset is available for download <a href="https://zenodo.org/records/18483292">via Zenodo</a>. Accompanying this dataset, we have published a comprehensive technical documentation <a href="https://doi.org/10.48550/arXiv.2607.02570">on arXiv</a>.
-          </p>
-          <p>
-            The DOSE-I data includes five primary biosignals:
-            <ul>
-              <li>ECG is recorded at 500 Hz in mV with a ±500 mV range using a 3-lead configuration.</li>
-              <li>EEG is sampled at 125 Hz in microvolts with a ±187.5 µV range across two channels and multiple electrode pairs.</li>
-              <li>Plethysmography (PLETH), sampled at 125 Hz with a 0–100 range via a finger sensor.</li>
-              <li>Respiration (RESP), recorded at 62.5 Hz using impedance-based measurements.</li>
-              <li>Non-invasive Blood Pressure (NIBP), measured every 3 minutes across systolic, mean, and diastolic values using three channels.</li>
-            </ul>
-            This data is further annotated with state-of-consciousness, MOAS/S, and clinical events. For a sample recording, see below.
-          </p>
+          <figure style="margin-top: 2rem; text-align: center;">
+            <img src="static/images/10-033_plot.png"
+                 alt="EEG plot from recording 10-033"
+                 style="max-width: 100%; height: auto;">
+            <figcaption class="has-text-centered" style="margin-top: 0.5rem; font-style: italic;">
+              EEG recording from procedure 10-033 showing transitions in state of consciousness.
+            </figcaption>
+          </figure>
          </div>
         
          <div class="tabs-layout">
@@ -368,28 +346,72 @@
               <input type="radio" name="data-tabs" id="data-tab1" checked>
               <input type="radio" name="data-tabs" id="data-tab2">
               <input type="radio" name="data-tabs" id="data-tab3">
+              <input type="radio" name="data-tabs" id="data-tab4">
 
               <div class="tab-buttons">
-                <label for="data-tab1">Primary Score</label>
-                <label for="data-tab2">Secondary Score</label>
-                <label for="data-tab3">Baseline Implementations</label>
+                <label for="data-tab1">Training Data</label>
+                <label for="data-tab2">Signal Windows</label>
+                <label for="data-tab3">Zero-dose Reference Episodes</label>
+                <label for="data-tab4">Additional Pharmacological Features</label>
               </div>
 
               <div class="tab-content content content1">
                 <p>
-                  A
+                  The DOSE-I dataset includes five primary biosignals:
+                  <ul>
+                    <li> ECG is recorded at 500 Hz in mV with a ±500 mV range using a 3-lead configuration.</li>
+                    <li> EEG is sampled at 125 Hz in microvolts with a ±187.5 µV range across two channels and multiple electrode pairs.</li>
+                    <li> Plethysmography (PLETH), sampled at 125 Hz with a 0–100 range via a finger sensor.</li>
+                    <li> Respiration (RESP), recorded at 62.5 Hz using impedance-based measurements.</li>
+                    <li> Non-invasive Blood Pressure (NIBP), measured every 3 minutes across systolic, mean, and diastolic values using three channels.</li>
+                  </ul>
                 </p>
+                <p>
+                  Teams may use a subset of modalities. Missing modalities are marked explicitly.
+                </p>
+                <p>
+                  This data is further annotated with state-of-consciousness, MOAS/S, and clinical events.
+                </p>
+
               </div>
   
               <div class="tab-content content content2">
                 <p>
-                  B
+                  A challenge-specific table and fixed signal windows are provided. This avoids requiring participants to reconstruct the full clinical timeline. Each example will contain a recording-group identifier for subject-wise validation. Whole-recording summary fields and all information produced after the index time will be removed to prevent leakage.
+                </p>
+                <p>
+                  A provisional audit found 659 clean positive-dose episodes across 165 recordings. Of these, 601 episodes across 162 recordings have a complete raw 30 s EEG window. Artifact masks will be provided. A window will not be removed only because one short artifact segment overlaps it; teams may use the mask or apply their own declared preprocessing.
                 </p>
               </div>
-
               <div class="tab-content content content3">
+               <p>
+                  The challenge includes matched 0 mg reference episodes. These are real clinical time points
+                  without a new propofol administration before the target assessment. They use the same input
+                  and target format as positive-dose episodes.
+                </p>
                 <p>
-                  C
+                  Matching uses only information available at the index time, such as current MOAA/S, elapsed
+                  procedure time, prior propofol exposure, and time since the previous dose. Outcomes are not
+                  used for matching. The primary dataset uses at most a 1:1 zero-dose to positive-dose ratio.
+                  Performance is reported separately for both strata.
+                </p>
+              </div>
+              <div class="tab-content content content4">
+                <p>
+                  Complementing the publicly available DOSE-I dataset, registered participants are provided four <b>Eleveld-model states</b>:
+                </p>
+                <ul>
+                  <li> the central compartment, </li>
+                  <li> the rapidly equilibrating compartment, </li>
+                  <li> the slowly equilibrating compartment, </li>
+                  <li> the effect-site compartment. </li>
+                </ul>
+                <p>
+                  The challenge files distinguish states
+                  immediately before the index episode from projected states at the target horizon after including the known index dose.
+                </p>
+                <p>
+                  Eleveld-model states have been calculated from the dosing history and required patient covariates at a 1 Hz frequency using the PyTCI package.
                 </p>
               </div>
               
@@ -403,19 +425,23 @@
   </div>
   </section>
 
+  <!-- Evaluation -->
   <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-full-width">
-         <h2 class="title is-3">Evaluation</h2>
-         <p>
-           Final evaluation will use an independent and non-public dataset of 150 recordings collected under a closely matched protocol.
-           50 of these recordings will be used for intra-challenge feedback, 100 of these recordings for final evaluation. The organizer
-           pipeline will harmonize modalities, labels, and episode definitions before evaluation. No labels or signal windows will be
-           released.
-         </p>
-        
-         <div class="tabs-layout">
+        <h2 class="title is-3">Evaluation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Final evaluation will use an independent and non-public dataset of 150 recordings collected under a closely matched protocol.
+            50 of these recordings will be used for intra-challenge feedback, 100 of these recordings for final evaluation.
+          </p>
+          <p>
+            The organiser pipeline will harmonize modalities, labels, and episode definitions before evaluation. No labels or signal windows will be
+            released.
+          </p>
+        </div>
+        <div class="tabs-layout">
           <div class="tabs">
 
             <input type="radio" name="eval-tabs" id="eval-tab1" checked>
@@ -424,14 +450,30 @@
 
             <div class="tab-buttons">
                 <label for="eval-tab1">Primary Score</label>
-                <label for="eval-tab2">Secondary Score</label>
+                <label for="eval-tab2">Secondary Scores</label>
                 <label for="eval-tab3">Baseline Implementations</label>
             </div>
 
             <div class="tab-content content content1">
               <p>
-                The primary score is recording-balanced mean absolute error for future MOAA/S, 
-                averaged equally across positive-dose and zero-dose episodes:
+                The primary score is recording-balanced <b>mean absolute error</b> (MAE) for future MOAA/S, averaged equally across positive-dose and zero-dose episodes:
+              </p>
+              <p>
+              <math>
+  <mi>Score</mi>
+  <mo>=</mo>
+  <mfrac><mn>1</mn><mn>2</mn></mfrac>
+  <msub>
+    <mi>MAE</mi>
+    <mtext>dose&gt;0</mtext>
+  </msub>
+  <mo>+</mo>
+  <mfrac><mn>1</mn><mn>2</mn></mfrac>
+  <msub>
+    <mi>MAE</mi>
+    <mtext>dose=0</mtext>
+  </msub>
+</math>
               </p>
               <p>
                 where each MAE is first averaged within recording and then across recordings. Lower is better. This prevents patients
@@ -448,11 +490,11 @@
                 Secondary metrics are:
               </p>
               <ul>
-                <li> direction-of-change </li>
-                <li> macro-F1 </li>
-                <li> balanced accuracy </li>
-                <li> Spearman correlation </li>
-                <li> probability calibration </li>
+                <li> Direction-of-change </li>
+                <li> Macro-F1 </li>
+                <li> Balanced Accuracy </li>
+                <li> Spearman Correlation </li>
+                <li> Probability Calibration </li>
               </ul>
             </div>
 
@@ -469,7 +511,7 @@
                   Standardized ablations will compare clinical/dose features, Eleveld features, pEEG, raw biosignals, and the full model.
                 </p>
             </div>
-            </div> 
+           </div>
           </div>
         </div>
       </div>
@@ -477,8 +519,32 @@
   </div>
   </section>
 
+  <!-- Rules -->
+  <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Rules</h2>
 
-<section class="section" id="Dates">
+        <div class="content has-text-justified">
+          <ul>
+              <li>All validation and model selection must keep complete recording IDs together. </li>
+              <li> Participants must follow the DOSE-I Data Use Agreement and must not attempt re-identification. </li>
+              <li> Participants may use the public DOSE-I dataset for pretraining, self-supervised representation learning, or feature extraction. External public datasets and pretrained models are also permitted, provided their use is clearly declared. </li>
+              <li> Final submissions must include predictions, a short method description, and enough code or a container to reproduce inference. </li>
+              <li> Submission frequency will be limited to one per week during development and one final submission per team. </li>
+              <li> Organizers and their PhD students will not participate, in line with the ICASSP rules. </li>
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+
+  <!-- Important Dates -->
+  <section class="section" id="Dates">
   <div class="container is-max-desktop content">
     <h2 class="title">Important Dates</h2>
     <div class="notification is-light">
@@ -508,6 +574,7 @@
 </section>
 
   
+<!-- Registration and Contact -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
@@ -529,6 +596,7 @@
   </section>
 
 
+  <!-- Organisers -->
   <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
