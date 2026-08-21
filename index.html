@@ -178,7 +178,7 @@
                  alt="Propofol Application in Clinical Endoscopy"
                  style="max-width: 100%; height: auto;">
         </figure>
-        <h2 class="title is-3">Can we predict how a patient’s responsiveness will change before a propofol dose takes effect?</h2>
+        <h2 class="title is-3">Can we predict how a patient’s responsiveness will change before a Propofol dose takes effect?</h2>
         <div class="content has-text-justified">
           <p>
             For this ICASSP 2027 Signal Processing Grand Challenge, we invite teams from signal processing, machine learning, clinical monitoring, anesthesia, neuroscience, and consciousness research. The challenge asks participants to forecast a clinically observed response to propofol from multimodal signal information available at the time of administration. Training data is publicly available. Final evaluation will use an independent and unreleased clinical cohort. The challenge is open October 1 to December 1, 2026.
@@ -330,10 +330,18 @@
             Training examples will be derived from the publicly available DOSE-I dataset, which contains 171 routine endoscopy recordings, 78.5 h of multimodal data, and repeated clinical responsiveness assessments. The DOSE-I dataset is available for download <a href="https://zenodo.org/records/18483292">via Zenodo</a>. Accompanying this dataset, we have published a comprehensive technical documentation <a href="https://doi.org/10.48550/arXiv.2607.02570">on arXiv</a>.
           </p>
           <p>
-             A feasibility audit identified 659
-            candidate positive-dose response episodes across 165 recordings under a provisional definition. Matched 0 mg 
-            reference episodes will be added without using future outcomes for matching. Final evaluation will use held-out 
-            recordings that are not publicly available.
+            A feasibility audit identified 659 candidate positive-dose response episodes across 165 recordings under a provisional definition. 
+            Of these, 601 episodes across 162 recordings have a complete raw 30 s EEG window. Artifact masks will be provided. 
+            A window will not be removed only because one short artifact segment overlaps it; teams may use the mask or apply their own declared preprocessing.
+            Matched 0 mg reference episodes will be added without using future outcomes for matching. 
+          </p>
+          <p>
+            A challenge-specific table and fixed signal windows are provided. This avoids requiring participants to reconstruct the full clinical timeline. 
+            Each example will contain a recording-group identifier for subject-wise validation. 
+            Whole-recording summary fields and all information produced after the index time will be removed to prevent leakage.            
+          </p>
+          <p>
+            Final evaluation will use held-out recordings that are not publicly available.
           </p>  
           <figure style="margin-top: 2rem; text-align: center;">
             <img src="static/images/10-033_plot.png"
@@ -355,8 +363,8 @@
 
               <div class="tab-buttons">
                 <label for="data-tab1">Training Data</label>
-                <label for="data-tab2">Signal Windows</label>
-                <label for="data-tab3">Zero-dose Reference Episodes</label>
+                <label for="data-tab2">Zero-dose Reference Episodes</label>
+                <label for="data-tab3">Additional pEEG Features</label>
                 <label for="data-tab4">Additional Pharmacological Features</label>
               </div>
 
@@ -377,18 +385,8 @@
                 <p>
                   This data is further annotated with state-of-consciousness, MOAS/S, and clinical events.
                 </p>
-
               </div>
-  
               <div class="tab-content content content2">
-                <p>
-                  A challenge-specific table and fixed signal windows are provided. This avoids requiring participants to reconstruct the full clinical timeline. Each example will contain a recording-group identifier for subject-wise validation. Whole-recording summary fields and all information produced after the index time will be removed to prevent leakage.
-                </p>
-                <p>
-                  A provisional audit found 659 clean positive-dose episodes across 165 recordings. Of these, 601 episodes across 162 recordings have a complete raw 30 s EEG window. Artifact masks will be provided. A window will not be removed only because one short artifact segment overlaps it; teams may use the mask or apply their own declared preprocessing.
-                </p>
-              </div>
-              <div class="tab-content content content3">
                <p>
                   The challenge includes matched 0 mg reference episodes. These are real clinical time points
                   without a new propofol administration before the target assessment. They use the same input
@@ -399,6 +397,16 @@
                   procedure time, prior propofol exposure, and time since the previous dose. Outcomes are not
                   used for matching. The primary dataset uses at most a 1:1 zero-dose to positive-dose ratio.
                   Performance is reported separately for both strata.
+                </p>
+              </div>
+              <div class="tab-content content content3">
+                <p>
+                  In addition to raw EEG data, a set of 40 processed EEG (short: pEEG) parameters are provided. 
+                  Derived from raw EEG signals, these numerical features simplify brain activity into values clinicians can use—especially to monitor depth of anesthesia or sedation.
+                </p>
+                <p>
+                  These additional features are part of the DOSE-I dataset and include 25 pEEG features derived from EEG bands as well as 16 well-established pEEG features from the scientific literature, such as
+                  Spectral Edge Freqency 95%, Weighted Spectral Median Frequency Permutation Entropy, SynchFastSlow, Bicoherence of SFS, and PowerFastSlow.
                 </p>
               </div>
               <div class="tab-content content content4">
