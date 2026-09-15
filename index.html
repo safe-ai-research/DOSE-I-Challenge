@@ -181,7 +181,7 @@
         <h2 class="title is-3">Can we predict how a patient’s responsiveness will change before a Propofol dose takes effect?</h2>
         <div class="content has-text-justified">
           <p>
-            For this ICASSP 2027 Signal Processing Grand Challenge, we invite teams from signal processing, machine learning, clinical monitoring, anesthesia, neuroscience, and consciousness research. The challenge asks participants to forecast a clinically observed response to propofol from multimodal signal information available at the time of administration. Training data is publicly available. Final evaluation will use an independent and unreleased clinical cohort. The challenge is open October 1 to December 1, 2026.
+            For this ICASSP 2027 Signal Processing Grand Challenge, we invite teams from signal processing, machine learning, clinical monitoring, anesthesia, neuroscience, and consciousness research. The challenge asks participants to forecast a clinically observed response to propofol from multimodal signal information available at the time of administration. Training data are derived from the publicly available DOSE-I dataset. Final evaluation will use an independent and unreleased clinical cohort. The challenge is open October 1 to December 1, 2026.
           </p>
         </div>
       </div>
@@ -256,12 +256,14 @@
 
               <div class="tab-content content content1">
                 <p>
-                  For each positive-dose or matched zero-dose episode, predict the <b>future MOAA/S level</b> approximately 60 s after the index time.
-                  The model receives data from the 30 s interval ending at episode start. The outcome is the nearest future MOAA/S assessment to 60 s after the bolus, within a tolerance of 15 s.
+                  For each positive-dose or matched zero-dose reference episode, predict the <b>future MOAA/S level</b> 
+                  approximately 60 s after the index time.
                 </p>
                 <p>
-                  Episodes are excluded
-                  if another administration begins before the outcome assessment.
+                  Each episode contains a 30 s input window [t-30 s, t). For positive-dose episodes, 
+                  t is the grouped propofol administration time in DOSE-I v2. The target is the MOAA/S assessment 
+                  closest to t+60 s; an episode is included if an assessment is available within ±15 s of this time. 
+                  Episodes have been excluded if another propofol administration occurs between t and the target assessment.
                 </p>
               </div>
   
@@ -293,24 +295,8 @@
                 <p>
                   where −1 means more responsive, 0 unchanged, and +1 less responsive.
                 </p>
-                <p>
-                  The current feasibility audit found class counts of 19, 284, and 356 for the positive-dose episodes.
-                  Direction-of-change results will therefore be reported as a secondary analysis.
-                </p>
               </div>
 
-              <div class="tab-content content content3">
-                <p>
-                  A small optional benchmark provides participants the opportunity to predict the observed cumulative induction 
-                  dose until the first documented MOAA/S 1 endpoint. This is not an optimal or recommended dose. 
-                  It also reflects clinical titration decisions. The audit supports this only as an exploratory 
-                  benchmark with about one independent example per recording.
-                </p>
-                <p>
-                  Early supplemental-dose prediction will not be used unless the clinical event definition can be resolved.
-                </p>
-              </div>
-              
             </div>
           </div>
         </div>
@@ -327,22 +313,42 @@
 
          <div class="content has-text-justified">
           <p>
-            Training examples will be derived from the publicly available DOSE-I dataset, which contains 171 routine endoscopy recordings, 78.5 h of multimodal data, and repeated clinical responsiveness assessments. The DOSE-I dataset is available for download <a href="https://zenodo.org/records/18483292">via Zenodo</a>. Accompanying this dataset, we have published a comprehensive technical documentation <a href="https://doi.org/10.48550/arXiv.2607.02570">on arXiv</a>.
+            The challenge training set can be downlodaed via XXX. Training examples are 
+            derived from the publicly available DOSE-I dataset, 
+            which contains 171 routine endoscopy recordings, 78.5 h of multimodal data, 
+            and repeated clinical responsiveness assessments.
           </p>
           <p>
-            A feasibility audit identified 659 candidate positive-dose response episodes across 165 recordings under a provisional definition. 
-            Of these, 601 episodes across 162 recordings have a complete raw 30 s EEG window. Artifact masks will be provided. 
-            A window will not be removed only because one short artifact segment overlaps it; teams may use the mask or apply their own declared preprocessing.
-            Matched 0 mg reference episodes will be added without using future outcomes for matching. 
-          </p>
-          <p>
-            A challenge-specific table and fixed signal windows are provided. This avoids requiring participants to reconstruct the full clinical timeline. 
-            Each example will contain a recording-group identifier for subject-wise validation. 
-            Whole-recording summary fields and all information produced after the index time will be removed to prevent leakage.            
+            The challenge training set contains 662 positive-dose episodes and 
+            662 matched zero-dose reference episodes from 169 DOSE-I recordings. 
+            Episodes containing signal artifacts are retained. For local validation, 
+            we recommend splitting the data by 
+            recording rather than by episode to avoid leakage.
           </p>
           <p>
             Final evaluation will use held-out recordings that are not publicly available.
-          </p>  
+          </p> 
+          <p>
+            The orginal DOSE-I dataset is available for download <a href="https://zenodo.org/records/18483292">via Zenodo</a>. 
+            Accompanying this dataset, we have published a comprehensive technical documentation 
+            <a href="https://doi.org/10.48550/arXiv.2607.02570">on arXiv</a>.
+          </p>
+          <p>
+            A feasibility audit identified 659 candidate positive-dose response episodes across 
+            165 recordings under a provisional definition. Of these, 601 episodes across 162 
+            recordings have a complete raw 30 s EEG window. Artifact masks will be provided. 
+            A window will not be removed only because one short artifact segment overlaps it; 
+            teams may use the mask or apply their own declared preprocessing.
+            Matched 0 mg reference episodes will be added without using future outcomes for matching. 
+          </p>
+          <p>
+            A challenge-specific table and fixed signal windows are provided. This avoids 
+            requiring participants to reconstruct the full clinical timeline. 
+            Each example will contain a recording-group identifier for subject-wise validation. 
+            Whole-recording summary fields and all information produced after the index time will 
+            be removed to prevent leakage.            
+          </p>
+          
           <figure style="margin-top: 2rem; text-align: center;">
             <img src="static/images/10-033_plot.png"
                  alt="EEG plot from recording 10-033"
@@ -362,7 +368,7 @@
               <input type="radio" name="data-tabs" id="data-tab4">
 
               <div class="tab-buttons">
-                <label for="data-tab1">Training Data</label>
+                <label for="data-tab1">Biosignals and Clinical Variables</label>
                 <label for="data-tab2">Zero-dose Reference Episodes</label>
                 <label for="data-tab3">Additional pEEG Features</label>
                 <label for="data-tab4">Additional Pharmacological Features</label>
@@ -372,19 +378,20 @@
                 <p>
                   The DOSE-I dataset includes five primary biosignals:
                   <ul>
-                    <li> ECG is recorded at 500 Hz in mV with a ±500 mV range using a 3-lead configuration.</li>
-                    <li> EEG is sampled at 125 Hz in microvolts with a ±187.5 µV range across two channels and multiple electrode pairs.</li>
-                    <li> Plethysmography (PLETH), sampled at 125 Hz with a 0–100 range via a finger sensor.</li>
-                    <li> Respiration (RESP), recorded at 62.5 Hz using impedance-based measurements.</li>
-                    <li> Non-invasive Blood Pressure (NIBP), measured every 3 minutes across systolic, mean, and diastolic values using three channels.</li>
+                      <li> EEG: 125 Hz, µV, two channels and multiple electrode pairs.
+                      <li>	ECG: 500 Hz, mV, 3-lead configuration.
+                      <li> Plethysmography (PLETH): 125 Hz, finger sensor.
+                      <li> Respiration (RESP): 62.5 Hz, impedance-based measurement.
+                      <li> Non-invasive blood pressure (NIBP): systolic, mean, and diastolic measurements approximately every 3 minutes.                    
                   </ul>
                 </p>
                 <p>
-                  Teams may use a subset of modalities. Missing modalities are marked explicitly.
+                  Additional data include derived vital parameters such as heart rate, respiratory rate, 
+                  and blood oxygen saturation, clinical event annotations, static patient information, 
+                  and processed EEG features. Teams may use any subset of the provided modalities. 
+                  Missing data are marked explicitly.
                 </p>
-                <p>
-                  This data is further annotated with state-of-consciousness, MOAS/S, and clinical events.
-                </p>
+                
               </div>
               <div class="tab-content content content2">
                <p>
@@ -446,12 +453,15 @@
         <h2 class="title is-3">Evaluation</h2>
         <div class="content has-text-justified">
           <p>
-            Final evaluation will use an independent and non-public dataset of 150 recordings collected under a closely matched protocol.
+            Challenge evaluation will use an independent and non-public dataset of 150 recordings collected under a closely matched protocol.
             50 of these recordings will be used for intra-challenge feedback, 100 of these recordings for final evaluation.
           </p>
           <p>
-            The organiser pipeline will harmonize modalities, labels, and episode definitions before evaluation. No labels or signal windows will be
-            released.
+            The challenge feature data for the evaluation episodes are released with pseudonymous challenge identifiers. 
+            Target MOAA/S labels remain hidden.
+          </p>
+          <p>
+            For each evaluation episode, teams submit one predicted future MOAA/S value and one predicted direction of change
           </p>
         </div>
         <div class="tabs-layout">
@@ -503,27 +513,14 @@
                 Secondary metrics are:
               </p>
               <ul>
-                <li> Direction-of-change </li>
-                <li> Macro-F1 </li>
-                <li> Balanced Accuracy </li>
-                <li> Spearman Correlation </li>
-                <li> Probability Calibration </li>
+                <li> MAE for positive-dose episodes </li>
+                <li> MAE for zero-dose episodes </li>
+                <li> Macro-F1 for Direction-of-change </li>
               </ul>
+          
+              
             </div>
 
-            <div class="tab-content content content3">
-                 <p>
-                  Three simple reproducible baseline implementations are provided by the challenge:
-                </p>
-                <ul>
-                  <li> persistence: future MOAA/S equals current MOAA/S; </li>
-                  <li> a tabular model using current state, dose, dose history, static data, and Eleveld features; </li>
-                  <li> a small raw-signal baseline using the 30 s biosignal window. </li>
-                </ul>    
-                <p>
-                  Standardized ablations will compare clinical/dose features, Eleveld features, pEEG, raw biosignals, and the full model.
-                </p>
-            </div>
            </div>
           </div>
         </div>
