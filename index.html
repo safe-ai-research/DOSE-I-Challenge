@@ -247,12 +247,10 @@
 
               <input type="radio" name="task-tabs" id="task-tab1" checked>
               <input type="radio" name="task-tabs" id="task-tab2">
-              <input type="radio" name="task-tabs" id="task-tab3">
 
               <div class="tab-buttons">
                 <label for="task-tab1">Primary Prediction Task</label>
                 <label for="task-tab2">Secondary Prediction Task</label>
-                <label for="task-tab3">Exploratory Induction Benchmark</label>
               </div>
 
               <div class="tab-content content content1">
@@ -262,7 +260,7 @@
                 </p>
                 <p>
                   Each episode contains a 30 s input window [t-30 s, t). For positive-dose episodes, 
-                  t is the grouped propofol administration time in DOSE-I v2. The target is the MOAA/S assessment 
+                  t is the grouped propofol administration time in the challange dataset. The target is the MOAA/S assessment 
                   closest to t+60 s; an episode is included if an assessment is available within ±15 s of this time. 
                   Episodes have been excluded if another propofol administration occurs between t and the target assessment.
                 </p>
@@ -364,8 +362,8 @@
               <div class="tab-buttons">
                 <label for="data-tab1">Biosignals and Clinical Variables</label>
                 <label for="data-tab2">Zero-dose Reference Episodes</label>
-                <label for="data-tab3">Additional pEEG Features</label>
-                <label for="data-tab4">Additional Pharmacological Features</label>
+                <label for="data-tab3">pEEG Features</label>
+                <label for="data-tab4">Pharmacological Features</label>
               </div>
 
               <div class="tab-content content content1">
