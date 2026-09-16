@@ -157,6 +157,9 @@ body {
   border-radius: 5px;
 }
 
+.column {
+  min-width: 0;
+}
 
 /* =========================
    REUSABLE TABS
